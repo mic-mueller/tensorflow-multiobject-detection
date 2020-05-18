@@ -59,4 +59,5 @@ python setup.py install
 
 cd C:\tensorflow1\
 jupyter notebook models\research\object_decetion\object_detection_tutorial.ipynb
+
 ´´´

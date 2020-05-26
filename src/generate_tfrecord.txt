@@ -1,0 +1,2 @@
+python generate_tfrecord.py --csv_input=_data\images\train_labels.csv --image_dir=_data\images\train --output_path=_data\train.record
+python generate_tfrecord.py --csv_input=_data\images\test_labels.csv --image_dir=_data\images\test --output_path=_data\test.record

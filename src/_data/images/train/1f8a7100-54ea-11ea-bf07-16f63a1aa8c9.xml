@@ -1,0 +1,26 @@
+<annotation>
+	<folder>free</folder>
+	<filename>1f8a7100-54ea-11ea-bf07-16f63a1aa8c9.jpg</filename>
+	<path>C:\Users\Philipp\Desktop\free\1f8a7100-54ea-11ea-bf07-16f63a1aa8c9.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>sackgasse</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>90</xmin>
+			<ymin>92</ymin>
+			<xmax>151</xmax>
+			<ymax>169</ymax>
+		</bndbox>
+	</object>
+</annotation>

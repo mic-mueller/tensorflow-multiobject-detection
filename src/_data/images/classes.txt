@@ -1,0 +1,7 @@
+dreisigerZone
+dreisigerZoneEnde
+sackgasse
+vorfahrt
+vorfahrtGewaehren
+stopp
+person

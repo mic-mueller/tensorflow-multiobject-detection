@@ -1,0 +1,26 @@
+<annotation>
+	<folder>free</folder>
+	<filename>bc7c3f30-54e9-11ea-bf07-16f63a1aa8c9.jpg</filename>
+	<path>C:\Users\Philipp\Desktop\free\bc7c3f30-54e9-11ea-bf07-16f63a1aa8c9.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>stopp</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>110</xmin>
+			<ymin>86</ymin>
+			<xmax>151</xmax>
+			<ymax>141</ymax>
+		</bndbox>
+	</object>
+</annotation>

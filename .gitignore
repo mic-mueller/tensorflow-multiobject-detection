@@ -1,3 +1,13 @@
+**.jpg
+/.ba
+/.ba2
+/.idea
+/.venv
+/.venv15
+/models
+/src/training
+/src/_out
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

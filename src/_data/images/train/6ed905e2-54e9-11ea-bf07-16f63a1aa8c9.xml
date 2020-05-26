@@ -1,0 +1,26 @@
+<annotation>
+	<folder>free</folder>
+	<filename>6ed905e2-54e9-11ea-bf07-16f63a1aa8c9.jpg</filename>
+	<path>C:\Users\Philipp\Desktop\free\6ed905e2-54e9-11ea-bf07-16f63a1aa8c9.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>vorfahrtGewaehren</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>170</xmin>
+			<ymin>103</ymin>
+			<xmax>206</xmax>
+			<ymax>150</ymax>
+		</bndbox>
+	</object>
+</annotation>

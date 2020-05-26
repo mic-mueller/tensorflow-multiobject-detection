@@ -33,10 +33,31 @@ pip install --upgrade tensorflow
 ## full commandline installation windows 10 64bit
 
 ## install tensoflow object detection api
+see for further reading https://github.com/tensorflow/models/blob/079d67d9a0b3407e8d074a200780f3835413ef99/research/object_detection/g3doc/installation.md
 ```cmd
-bitsadmin /transfer /download /priority foreground /dynamic https://github.com/tensorflow/models/archive/master.zip c:\tensoflow\models.zip 
-bitsadmin /transfer /download /priority foreground /dynamic https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10/archive/master.zip c:\tensoflow\models\research\object_detection\tut_repo.zip
-bitsadmin /transfer /download /priority foreground /dynamic http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz c:\tensoflow\models\research\object_detection\faster_rcnn_inception_v2_coco_2018_01_28.tar.gz
+SET PROJECT_DIR=c:\tf2
+
+:: download repo from tutorial
+bitsadmin /transfer /download /priority foreground /dynamic https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10/archive/master.zip "%PROJECT_DIR%\tut_repo.zip"
+
+:: download repo from tutorial
+bitsadmin /transfer /download /priority foreground /dynamic http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz "%PROJECT_DIR%\faster_rcnn_inception_v2_coco_2018_01_28.tar.gz"
+echo you have to manuel extract tut_repo.zip to "%PROJECT_DIR%\tut_repo"
+echo you have to manuel extract, 2 times, faster_rcnn_inception_v2_coco_2018_01_28.tar.gz to "%PROJECT_DIR%\faster_rcnn_inception_v2_coco_2018_01_28"
+echo waiting 10 sec before download next file
+timeout /t 10
+
+:: download tensorflow models (containing objection detection api)
+bitsadmin /transfer /download /priority foreground /dynamic https://github.com/tensorflow/models/archive/079d67d9a0b3407e8d074a200780f3835413ef99.zip "%PROJECT_DIR%\models.zip"
+
+:: "^" is for multi-line command like "\" on bash
+if exist %PROJECT_DIR%\tut_repo\ ^
+if exist %PROJECT_DIR%\faster_rcnn_inception_v2_coco_2018_01_28 ^
+if exist %PROJECT_DIR%\models (
+	rename %PROJECT_DIR%\tut_repo\TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10-master object_detection
+	move /Y %PROJECT_DIR%\tut_repo\object_detection %PROJECT_DIR%\models\research\
+	move /Y %PROJECT_DIR%\faster_rcnn_inception_v2_coco_2018_01_28 %PROJECT_DIR%\models\research\object_detection\faster_rcnn_inception_v2_coco_2018_01_28
+)
 
 pip install protobuf
 pip install pillow

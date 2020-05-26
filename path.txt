@@ -1,0 +1,66 @@
+CMD:
+
+cd C:\tf
+
+.venv\Scripts\activate
+
+set PYTHONPATH=C:\tf\models;C:\tf\models\research;C:\tf\models\research\slim
+
+cd models\research\object_detection
+
+python Object_detection_image.py
+
+
+Training (im Ordner object_detection):
+
+  Bilder nicht größer als 200KB mit höchstens 720 x 1280 --> 20% in \object_detection\images\test, 80% in \object_detection\images\train
+  (resizer.py Script zum Bilder verkleinern)
+
+python xml_to_csv.py
+  (erstellt train_labels.csv- und test_labels.csv-Datei mit allen Daten aus den .xml-Datein der train- und test-Bilder)
+
+  generate_tfrecord.py im Texteditor öffnen und lable map ab Zeile 31 ersetzen
+
+python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record
+python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record
+  (generiert train.record- und test.record-Datei)
+
+  Neue Texteditor-Datei labelmap.pbtxt im Ordner \object_detection\training erstellen mit lable map:
+	item {
+	  id: 1
+	  name: 'nine'
+	}
+
+	item {
+	  id: 2
+	  name: 'ten'
+	}
+
+	item {
+	  id: 3
+	  name: 'ace'
+	}
+
+	...
+
+  faster_rcnn_inception_v2_pets.config-Datei aus Ordner \object_detection\samples\configs in Ordner \object_detection\training kopieren und im Texteditor bearbeiten:
+	Zeile 9:	num_classes : 3
+	Zeile 106:	fine_tune_checkpoint : "C:/tf/models/research/object_detection/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt"
+	Zeile 123/125:	input_path : "C:/tf/models/research/object_detection/train.record"
+			label_map_path: "C:/tf/models/research/object_detection/training/labelmap.pbtxt"
+	Zeile 130:	num_examples --> Anzahl der Bilder in \images\test
+	Zeile 135/137:	input_path : "C:/tf/models/research/object_detection/test.record"
+			label_map_path: "C:/tf/models/research/object_detection/training/labelmap.pbtxt"
+
+  train.py-Datei aus Ordner \object_detection\legacy in Ordner \object_detection kopieren
+
+python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/faster_rcnn_inception_v2_pets.config
+  (Training starten)
+
+  Trainieren lassen bis loss unter 0.05 liegt (bei SSD loss kleiner als 2)
+
+tensorboard --logdir=training
+  ((neues CMD-Fenster) Fortschritt anzeigen --> YourPCName:6006 im Browser)
+
+  Training abbrechen mit Strg+C (Checkpoint abwarten)
+

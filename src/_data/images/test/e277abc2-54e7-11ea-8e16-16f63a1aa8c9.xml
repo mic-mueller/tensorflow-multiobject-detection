@@ -1,0 +1,26 @@
+<annotation>
+	<folder>free</folder>
+	<filename>e277abc2-54e7-11ea-8e16-16f63a1aa8c9.jpg</filename>
+	<path>C:\Users\Philipp\Desktop\free\e277abc2-54e7-11ea-8e16-16f63a1aa8c9.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>vorfahrt</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>133</xmin>
+			<ymin>75</ymin>
+			<xmax>213</xmax>
+			<ymax>189</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Bilder</folder>
+	<filename>25e60cd6-1cd6-11ea-b90c-72b5f773b75d.jpg</filename>
+	<path>C:\Users\Philipp\Desktop\Bilder\25e60cd6-1cd6-11ea-b90c-72b5f773b75d.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>dreisigerZone</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>125</xmin>
+			<ymin>89</ymin>
+			<xmax>155</xmax>
+			<ymax>131</ymax>
+		</bndbox>
+	</object>
+</annotation>

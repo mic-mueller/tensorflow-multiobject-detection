@@ -30,21 +30,22 @@ from utils import label_map_util
 from utils import visualization_utils as vis_util
 
 # Name of the directory containing the object detection module we're using
-MODEL_NAME = 'inference_graph'
-IMAGE_NAME = 'test1.jpg'
+MODEL_FILE_NAME = 'frozen_inference_graph.pb'
+MODEL_FOLDER = '_out'
+IMAGE_NAME = 'test'
 
 # Grab path to current working directory
 CWD_PATH = os.getcwd()
 
 # Path to frozen detection graph .pb file, which contains the model that is used
 # for object detection.
-PATH_TO_CKPT = os.path.join(CWD_PATH,MODEL_NAME,'frozen_inference_graph.pb')
+PATH_TO_CKPT = os.path.join(CWD_PATH, MODEL_FOLDER, MODEL_FILE_NAME)
 
 # Path to label map file
 PATH_TO_LABELS = os.path.join(CWD_PATH,'training','labelmap.pbtxt')
 
 # Path to image
-PATH_TO_IMAGE = os.path.join(CWD_PATH,IMAGE_NAME)
+PATH_TO_IMAGE = os.path.join(CWD_PATH,"_data","manuel_test_images",IMAGE_NAME)
 
 # Number of classes the object detector can identify
 NUM_CLASSES = 6
@@ -88,43 +89,52 @@ detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 
 # Number of objects detected
 num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+import time
+image_count = 100
+times_sec = []
 
-# Load image using OpenCV and
-# expand image dimensions to have shape: [1, None, None, 3]
-# i.e. a single-column array, where each item in the column has the pixel RGB value
-image = cv2.imread(PATH_TO_IMAGE)
-image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-image_expanded = np.expand_dims(image_rgb, axis=0)
+for i in range(1, image_count+1):
+    start = time.time()
+    image = cv2.imread(PATH_TO_IMAGE+f" ({i}).jpg")
+    # Load image using OpenCV and
+    # expand image dimensions to have shape: [1, None, None, 3]
+    # i.e. a single-column array, where each item in the column has the pixel RGB value
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image_expanded = np.expand_dims(image_rgb, axis=0)
 
-# Perform the actual detection by running the model with the image as input
-(boxes, scores, classes, num) = sess.run(
-    [detection_boxes, detection_scores, detection_classes, num_detections],
-    feed_dict={image_tensor: image_expanded})
+    # Perform the actual detection by running the model with the image as input
+    (boxes, scores, classes, num) = sess.run(
+        [detection_boxes, detection_scores, detection_classes, num_detections],
+        feed_dict={image_tensor: image_expanded})
 
-# Draw the results of the detection (aka 'visulaize the results')
+    # Draw the results of the detection (aka 'visulaize the results')
 
-print("boxes")
-print(boxes)
-print("scores")
-print(scores)
-print("classes")
-print(classes)
-print("num")
-print(num)
+    # print("boxes")
+    # print(boxes)
+    # print("scores")
+    # print(scores)
+    # print("classes")
+    # print(classes)
+    # print("num")
+    # print(num)
 
-vis_util.visualize_boxes_and_labels_on_image_array(
-    image,
-    np.squeeze(boxes),
-    np.squeeze(classes).astype(np.int32),
-    np.squeeze(scores),
-    category_index,
-    use_normalized_coordinates=True,
-    line_thickness=8,
-    min_score_thresh=0.30)
+    vis_util.visualize_boxes_and_labels_on_image_array(
+        image,
+        np.squeeze(boxes),
+        np.squeeze(classes).astype(np.int32),
+        np.squeeze(scores),
+        category_index,
+        use_normalized_coordinates=True,
+        line_thickness=8,
+        min_score_thresh=0.60)
 
-# All the results have been drawn on image. Now display the image.
-cv2.imshow('Object detector', image)
-
+    # All the results have been drawn on image. Now display the image.
+    #cv2.imshow('Object detector', image)
+    end = time.time()
+    times_sec.append(end - start)
+    print(f"showing image {i}")
+    
+print(times_sec)
 # Press any key to close the image
 cv2.waitKey(0)
 

@@ -1,0 +1,29 @@
+item {
+    id: 1
+    name: 'dreisigerZone'
+}
+item {
+    id: 2
+    name: 'dreisigerZoneEnde'
+}
+item {
+    id: 3
+    name: 'vorfahrt'
+}
+item {
+    id: 4
+    name: 'vorfahrtGewaehren'
+}
+item {
+    id: 5
+    name: 'stopp'
+}
+item {
+    id: 6
+    name: 'sackgasse'
+}
+item {
+    id: 7
+    name: 'person'
+}
+	
